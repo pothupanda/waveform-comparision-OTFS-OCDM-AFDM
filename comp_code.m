@@ -1,6 +1,6 @@
 clc; clear; close all;
 
-%% ================= UNIFIED SYSTEM COMPARISON =================
+%% ======== UNIFIED SYSTEM COMPARISON =======
 % Compares OCDM, AFDM, and OTFS over NTN channels
 % All systems use:
 % - Same channel model
@@ -9,8 +9,8 @@ clc; clear; close all;
 % - Same number of symbols (256)
 % - LMMSE and MMSE-SD detectors
 
-%% ================= COMMON PARAMETERS =================
-%=======================================================
+%% ================= COMMON PARAMETERS ==========
+%================================================
 params = struct();
 
 % System dimensions
@@ -44,7 +44,7 @@ fprintf('Iterations: %d, SNR: %d to %d dB\n', ...
 fprintf('Max Doppler: %.2f Hz\n', params.max_doppler);
 fprintf('=====================================\n\n');
 
-%% ================= INITIALIZE RESULTS STRUCTURE =================
+%% ================= INITIALIZE RESULTS STRUCTURE ========
 results = struct();
 
 % OCDM results
@@ -71,22 +71,22 @@ fprintf('\n========== Running AFDM Simulation ==========\n');
 results.afdm = run_afdm_simulation(params);
 
 %% ================= SYSTEM 3: OTFS =================
-fprintf('\n========== Running OTFS Simulation ==========\n');
+fprintf('\n======= Running OTFS Simulation =====\n');
 results.otfs = run_otfs_simulation(params);
 
-%% ================= COMPARATIVE PLOTTING =================
+%% ================= COMPARATIVE PLOTTING ========
 plot_comparison_results(results, params);
 
-%% ================= SAVE RESULTS =================
+%% ================= SAVE RESULTS ================
 save('unified_comparison_results_NTND.mat', 'results', 'params');
 fprintf('\nResults saved to: unified_comparison_results.mat\n');
 
 %% ================= PERFORMANCE SUMMARY =================
 print_performance_summary(results, params);
 
-%% ========================================================
-%% ================= SYSTEM FUNCTIONS ====================
-%% ========================================================
+%% ================================================
+%% ================= SYSTEM FUNCTIONS =============
+%% ================================================
 
 function results = run_ocdm_simulation(params)
     % OCDM with Fresnel Transform
@@ -423,4 +423,5 @@ function print_performance_summary(results, params)
     end
     
     fprintf('========================================\n\n');
+
 end
